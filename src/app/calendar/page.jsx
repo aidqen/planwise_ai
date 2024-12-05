@@ -7,7 +7,7 @@ export default function CalendarPage() {
   const params = useParams()
   console.log('params:', params.view)
   const [view, setView] = useState(params?.view)
-  const monthsOfTheYear = [
+  const yearMonths = [
     'January',
     'February',
     'March',
@@ -20,23 +20,20 @@ export default function CalendarPage() {
     'October',
     'November',
     'December',
-]
+  ]
 
   function onSetView(value, ev) {
     ev.preventDefault()
     setView(value)
   }
 
-
-
   return (
     <div className="flex flex-col justify-start w-full">
-      <h1
-        className="text-white/60 hover:scale-110 hover:text-white'
-                    text-3xl duration-300 3xl"
-      >
-        Year
-      </h1>
+      <ul className="flex flex-col justify-start items-center gap-3 px-10 py-5">
+        {yearMonths.map((month, idx) => (
+          <li className="flex justify-center items-center rounded-lg py-1 px-4 border-white border w-full">{month}</li>
+        ))}
+      </ul>
     </div>
   )
 }
