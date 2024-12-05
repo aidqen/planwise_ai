@@ -1,0 +1,51 @@
+{
+    "userId": "12345",
+    "username": "johndoe",
+    "email": "johndoe@example.com",
+    "tasks": [
+      {
+        "id": "task1",
+        "type": "event",
+        "title": "Team Meeting",
+        "description": "Monthly team meeting",
+        "timestamp": 1732665600, 
+        "year": 2024,
+        "month": 11,
+        "day": 27,
+        "recurrence": {
+          "type": "monthly",
+          "onDay": [27]
+        },
+        "importance": "high"
+      },
+      {
+        "id": "task2",
+        "type": "task",
+        "title": "Grocery Shopping",
+        "description": "Weekly grocery run for household supplies",
+        "timestamp": 1732665600, 
+        "year": 2024,
+        "month": 11,
+        "day": 27,
+        "recurrence": {
+          "type": "weekly",
+          "onDay": ["Monday"]
+        },
+        "importance": "medium"
+      },
+      {
+        "id": "task3",
+        "type": "habit",
+        "title": "Morning Jog",
+        "description": "Daily morning jog around the park",
+        "timestamp": 1733142000,
+        "year": 2024,
+        "month": 12,
+        "day": 2,
+        "recurrence": {
+          "type": "daily"
+        },
+        "importance": "high"
+      }
+    ]
+  }
