@@ -3,7 +3,6 @@ import { useParams } from "next/navigation"
 
 export function MonthViewTitle() {
     const params = useParams()
-     console.log('params:', params)
 
      const monthsList = [
         'January',

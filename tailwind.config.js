@@ -1,23 +1,21 @@
-import daisyui from "daisyui"
+import daisyui from 'daisyui'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  daisyui: {
-    themes: "night"
-  },
+
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         night: '#111111ff',
         eerieBlack: '#1E1E1Eff',
         jet: '#313131ff',
@@ -34,15 +32,16 @@ module.exports = {
         eerieBlack2: '#232323ff',
         onyx: '#3C3C3Cff',
         jet2: '#2D2D2Dff',
-        jet3: '#AEAEAE'
+        jet3: '#AEAEAE',
       },
       boxShadow: {
         'custom-shadow': 'inset -2px 0px 2px 1px rgba(255,255,255,0.75)',
-        upcomingFocus: '0 0 20px 0px rgb(0 0 0 / 43%);'
-      }
+        upcomingFocus: '0 0 20px 0px rgb(0 0 0 / 43%);',
+      },
     },
   },
-  plugins: [
-    daisyui,
-  ],
-};
+  plugins: [daisyui],
+  daisyui: {
+    themes: ['night'],
+  },
+}

@@ -16,7 +16,7 @@ export function Sidebar() {
 
     const links = [
         { id: '2', logo: House, name: 'Home', href: '/' },
-        { id: '1', logo: CalendarDays, name: 'Calendar', href: '/calendar/year' }
+        { id: '1', logo: CalendarDays, name: 'Calendar', href: '/calendar' }
     ]
 
     return (

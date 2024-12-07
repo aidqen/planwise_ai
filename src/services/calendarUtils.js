@@ -38,28 +38,49 @@ export function getDaysOfMonth(year, monthIndex){
     return yearCalendar;
   }
 
-  export function assignTasksToMonth(weeks, tasks ){
-    tasks.forEach((task) => {
-      const taskDate = new Date(task.timestamp);
-      const taskYear = taskDate.getFullYear();
-      const taskMonth = taskDate.getMonth();
-      const taskDay = taskDate.getDate();
-  
-      for (let week of weeks) {
-        for (let day of week) {
-          if (day.timestamp) {
-            const dayDate = new Date(day.timestamp);
-            if (
-              dayDate.getFullYear() === taskYear &&
-              dayDate.getMonth() === taskMonth &&
-              dayDate.getDate() === taskDay
-            ) {
-              day.tasks?.push(task);
-            }
-          }
+  export function assignTasksToMonth(weeks, tasks) {
+    const updatedWeeks = weeks.map(week =>
+      week.map(day => {
+        if (day.timestamp) {
+          const dayDate = new Date(day.timestamp);
+          const dayTasks = tasks.filter(task => {
+            const taskDate = new Date(task.timestamp);
+            return (
+              taskDate.getFullYear() === dayDate.getFullYear() &&
+              taskDate.getMonth() === dayDate.getMonth() &&
+              taskDate.getDate() === dayDate.getDate()
+            );
+          });
+          
+          return { ...day, tasks: [...(day.tasks ?? []), ...dayTasks] };
         }
-      }
-    });
+        return day; 
+      })
+    );
   
-    return weeks;
+    return updatedWeeks;
+  } 
+  export function assignTasksToDay(day, tasks) {
+    console.log('day:', day)
+    if (day.timestamp) {
+      const dayDate = new Date(day.timestamp);
+      console.log('dayDate:', dayDate.getDate())
+      const dayTasks = tasks.filter(task => {
+        const taskDate = new Date(task.timestamp);
+        console.log('taskDate:', taskDate.getDate())
+        // console.log(taskDate.getFullYear(), dayDate.getFullYear(), taskDate.getMonth(), dayDate.getMonth(), taskDate.getDate(), dayDate.getDate());
+        // console.log(taskDate.getFullYear() === dayDate.getFullYear() &&
+        // taskDate.getMonth() === dayDate.getMonth() &&
+        // taskDate.getDate() === dayDate.getDate());
+        
+        return (
+          taskDate.getFullYear() === dayDate.getFullYear() &&
+          taskDate.getMonth() === dayDate.getMonth() &&
+          taskDate.getDate() === dayDate.getDate()
+        );
+      });
+  
+      return { ...day, tasks: [...(day.tasks ?? []), ...dayTasks] };
+    }
+    return day; // Return unchanged if no timestamp
   }

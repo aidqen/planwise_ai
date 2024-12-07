@@ -4,32 +4,39 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getDaysOfYear } from '../../services/calendarUtils'
+import Link from 'next/link'
 
 export default function CalendarLayout({ children }) {
   const dispatch = useDispatch()
   const pathname = usePathname()
-  const [isYearView, setIsYearView] = useState(true)
-
-  useEffect(() => {
-    setIsYearView(!(pathname.includes('month') || pathname.includes('week')))
-  }, [pathname])
+  const pathType = pathname.split('/')[2]
 
   useEffect(() => {
     dispatch({ type: SET_YEAR, year: getDaysOfYear(2024) })
   }, [])
 
-  const heading = isYearView ? ['year'] : ['week', 'month']
+  const heading = ['year', 'month']
+
+  function href(type) {
+    if (type === 'year') return '/calendar'
+    else return `/calendar/${type}/1`
+  }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-row text-white gap-7 mb-10">
-        {heading.map(text => (
-          <h1 key={text} className="capitalize">
-            {text}
-          </h1>
-        ))}
-      </div>
+    
+    <div className="flex flex-col w-full h-full">
+    {/* //   <div className="flex flex-row text-white gap-7 mb-10"> */}
+    {/* //     {heading.map(text => ( */}
+    {/* //       <Link */}
+    {/* //         key={text} */}
+    {/* //         href={href(text)} */}
+    {/* //         className={`${pathType === text || (text === 'year' && !pathType) ? 'font-bold' : ''} capitalize`} */}
+    {/* //       > */}
+    {/* //         {text} */}
+    {/* //       </Link> */}
+    {/* //     ))} */}
+    {/* //   </div> */}
       {children}
-    </div>
+     </div>
   )
 }
