@@ -69,8 +69,8 @@ export const userEx = {
       "type": "habit",
       "title": "Morning Jog",
       "description": "Daily morning jog around the park",
-      "timestamp": 1733184000000, // December 3, 2024, 6:00 AM
-      "finishTimestamp": 1733187600000, // One hour after start
+      "timestamp": 1733205600000, // December 3, 2024, 6:00 AM
+      "finishTimestamp": 1733209200000, // One hour after start
       "recurrence": {
         "type": "daily"
       },
@@ -134,8 +134,8 @@ export const userEx = {
       "type": "habit",
       "title": "Drink Water",
       "description": "Drink 8 glasses of water",
-      "timestamp": 1733184000000, // December 3, 2024, 9:00 AM
-      "finishTimestamp": 1733187600000, // One hour after start
+      "timestamp": 1733191200000, // December 3, 2024, 9:00 AM
+      "finishTimestamp": 1733194800000, // One hour after start
       "recurrence": {
         "type": "daily"
       },
@@ -200,8 +200,8 @@ export const userEx = {
       "type": "habit",
       "title": "Read a Book",
       "description": "Read at least 20 pages of a book",
-      "timestamp": 1733184000000, // December 3, 2024, 8:00 PM
-      "finishTimestamp": 1733187600000, // One hour after start
+      "timestamp": 1733212800000, // December 3, 2024, 8:00 PM
+      "finishTimestamp": 1733216400000, // One hour after start
       "recurrence": {
         "type": "daily"
       },

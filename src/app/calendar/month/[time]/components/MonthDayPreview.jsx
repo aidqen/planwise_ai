@@ -4,7 +4,6 @@ export function MonthDayPreview({day,monthIdx, dayIdx, weekIdx}) {
   const router = useRouter()
 
   function navigateToDay() {
-    console.log('dayIdx + 1 * weekIdx + 1:', dayIdx + 1 * weekIdx + 1)
     router.replace(`/calendar/month/${monthIdx}/week/${weekIdx + 1}/day/${dayIdx + 1 * weekIdx + 1}`)
   }
   return (
