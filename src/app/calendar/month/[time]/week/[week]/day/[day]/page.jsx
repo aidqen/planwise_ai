@@ -7,6 +7,7 @@ import { format } from 'date-fns'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { TimeSlots } from './components/TimeSlots'
 
 export default function DayView() {
   const pathname = usePathname()
@@ -16,13 +17,11 @@ export default function DayView() {
 
   const [date, setDate] = useState({ year: 2024, month: null, week: null, day: null })
   const [daySchedule, setDaySchedule] = useState(null)
-  const timeSlots = Array.from({ length: 20 }, (_, i) => `${i + 5}:00`)
+  const [selectedWeek, setSelectedWeek] = useState([])
 
   const monthIdx = urlParams[3]
   const weekIdx = urlParams[5]
   const dayIdx = urlParams[7]
-
-  // year.map((month) => month.map((week) => week.map((day) => console.log(format(day.timestamp, 'dd')))))
 
   useEffect(() => {
     var monthInput = MONTHS[+monthIdx - 1]
@@ -33,11 +32,16 @@ export default function DayView() {
 
   function fetchDay(monthIdx) {
     if (year?.length) {
-      var selectedWeek = year?.find((_, idx) => idx === monthIdx - 1)[weekIdx - 1]
-      var selectedDay = selectedWeek.find((day, idx) => day.day === +dayIdx)
+      const currentWeek = year?.find((_, idx) => idx === monthIdx - 1)[weekIdx - 1]
+      // console.log('currentWeek:', currentWeek)
+      setSelectedWeek(currentWeek)
+      var selectedDay = currentWeek?.find((day, idx) => {
+        return +day.day === +dayIdx * +weekIdx
+      })
     }
     if (selectedDay?.timestamp) {
       const dayWithTasks = assignTasksToDay(selectedDay, user?.tasks)
+      console.log('dayWithTasks:', dayWithTasks)
       setDaySchedule(dayWithTasks)
     }
   }
@@ -50,33 +54,25 @@ export default function DayView() {
         </h1>
         <OpenCloseBtn />
       </div>
-      <div className="flex flex-row items-center justify-between gap-2 w-full mb-3">
-        {SHORT_DAYS.map((day, idx) => (
-          <div
-            key={day}
-            className={`${
-              +dayIdx + idx === +dayIdx ? 'font-bold' : ''
-            } flex flex-col items-center gap-2`}
+      <div className="flex flex-row items-center justify-between gap-2 w-full mb-3 text-white">
+        {selectedWeek?.map((day, idx) => {
+          const dayOfWeek = format(new Date(day.timestamp), "EEE")
+
+          return <div
+            key={idx}
+            className={`${idx + 1 === +dayIdx ? 'font-bold' : ''
+              } flex flex-col items-center gap-2`}
           >
-            <h3>{day}</h3>
-            <h3>{+dayIdx + idx}</h3>
+            {day?.day && <>
+              <h3>{day.day}</h3>
+              <h3>{dayOfWeek}</h3>
+            </>}
           </div>
-        ))}
+        }
+
+        )}
       </div>
-      <div className="flex flex-col">
-        {timeSlots.map(time => (
-          <div
-            key={time}
-            className="grid grid-cols-[12.3%,88%] items-center h-12 relative"
-          >
-            {/* Time Label */}
-            <div className="flex justify-end w-11 pr-2 text-sm text-white/70">
-              {time}
-            </div>
-            <div className="bg-white/50 h-[1px] w-full px-3"></div>
-          </div>
-        ))}
-      </div>
+      <TimeSlots daySchedule={daySchedule} />
     </div>
   )
 }
