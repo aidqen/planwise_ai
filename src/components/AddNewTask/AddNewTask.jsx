@@ -1,5 +1,14 @@
 export function AddNewTask({}) {
   const taskModalOpen = useSelector(state => state.systemModule.taskModalOpen)
+  const colorInputRef = useRef(null)
+  function onToggleTaskModal() {
+    toggleTaskModal(false)
+  }
+
+  function onColorClick() {
+    colorInputRef.current.click()
+  }
+
   return (
     <dialog
       id="my_modal_1"
@@ -27,6 +36,21 @@ export function AddNewTask({}) {
             className="input input-bordered focus:outline-0 w-full max-w-full"
           />
           <div className="w-full flex flex-row justify-between items-center rounded-[0.5em] input input-bordered">
+            <h4 className="text-gray-400">Color</h4>
+            <div
+              onClick={onColorClick}
+              style={{ backgroundColor: newTask?.bg }}
+              className="h-8 w-8 rounded-[10px]"
+            ></div>
+            <input
+              type="color"
+              name="bg"
+              onChange={handleChange}
+              value={newTask.bg}
+              className="hidden"
+              ref={colorInputRef}
+            />
+          </div>
         </div>
       </div>
     </dialog>
