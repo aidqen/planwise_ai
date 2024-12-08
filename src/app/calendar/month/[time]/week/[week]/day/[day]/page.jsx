@@ -8,6 +8,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { TimeSlots } from './components/TimeSlots'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { CalendarTypeModal } from './components/CalendarTypeModal'
 
 export default function DayView() {
   const pathname = usePathname()
@@ -48,29 +50,34 @@ export default function DayView() {
 
   return (
     <div className="flex flex-col w-full h-full">
-      <div className="flex flex-row items-center justify-between mb-5">
+      <div className="flex flex-row items-center justify-between">
         <h1 className="font-bold text-xl text-white p-0 m-0">
           {date.month} {date.year}
         </h1>
-        <OpenCloseBtn />
+        <CalendarTypeModal />
       </div>
-      <div className="flex flex-row items-center justify-between gap-2 w-full mb-3 text-white">
+      <div className="flex flex-row items-center justify-between gap-2 w-full h-24 text-white">
+        <ChevronLeft className="w-6 h-6" />
         {selectedWeek?.map((day, idx) => {
-          const dayOfWeek = format(new Date(day.timestamp), "EEE")
+          const dayOfWeek = format(new Date(day.timestamp), 'EEE')
 
-          return <div
-            key={idx}
-            className={`${idx + 1 === +dayIdx ? 'font-bold' : ''
-              } flex flex-col items-center gap-2`}
-          >
-            {day?.day && <>
-              <h3>{day.day}</h3>
-              <h3>{dayOfWeek}</h3>
-            </>}
-          </div>
-        }
-
-        )}
+          return (
+            <div
+              key={idx}
+              className={`${
+                idx + 1 === +dayIdx ? 'font-bold text-white bg-black/40' : 'text-white/60'
+              } flex flex-col items-center text-sm gap-1 rounded-md p-2`}
+            >
+              {day?.day && (
+                <>
+                  <h3 className='font-semibold'>{day.day}</h3>
+                  <h3 className='font-light'>{dayOfWeek}</h3>
+                </>
+              )}
+            </div>
+          )
+        })}
+        <ChevronRight className="w-6 h-6" />
       </div>
       <TimeSlots daySchedule={daySchedule} />
     </div>

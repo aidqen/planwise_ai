@@ -15,6 +15,22 @@
   animation: dropdown 0.2s ease;
 }
 
+.dropdown-animation {
+  animation: 0.1s ease closeSubtasks;
+}
+
+.opacity-show {
+  animation: 0.1s ease opacityShow;
+}
+
+@keyframes opacityShow {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}
+
 @keyframes closeSubtasks {
   from {
     transform: translateY(-10px)

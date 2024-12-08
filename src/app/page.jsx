@@ -56,7 +56,7 @@ export default function Home() {
   console.log('dateNow:', todayFormatted)
   return (
     <>
-        <h1 className="text-4xl mb-2 text-white">Today</h1>
+        <h1 className="text-4xl mb-2 text-primary font-semibold">Today</h1>
         <h2 className="flex flex-row items-center ps-1 gap-2 text-base-content mb-5">
           <span>{todayFormatted}</span>
           <span>•</span>

@@ -1,6 +1,6 @@
-export function OpenCloseBtn() {
+export function OpenCloseBtn(props) {
   return (
-    <label className="btn-circle swap swap-rotate">
+    <label className="btn-circle swap swap-rotate" {...props}>
       {/* this hidden checkbox controls the state */}
       <input type="checkbox" />
 
