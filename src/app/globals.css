@@ -17,6 +17,7 @@
 
 .dropdown-animation {
   animation: 0.1s ease closeSubtasks;
+  transition: all;
 }
 
 .opacity-show {

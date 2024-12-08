@@ -5,7 +5,7 @@ import '@fontsource-variable/montserrat'
 import { Sidebar } from '@/components/Sidebar'
 import { ReduxProvider } from '@/components/ReactProvider'
 import { PlusButton } from '../components/PlusButton'
-import { AddNewTask } from '@/components/AddNewTask'
+import { AddNewTask } from '@/components/AddNewTask/AddNewTask'
 
 export const metadata = {
   title: 'Daily Planner',

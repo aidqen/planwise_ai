@@ -16,6 +16,10 @@ export function AddNewTask({}) {
     recurrence: { isOn: false, onDays: [0,1,2,3,4,5,6] },
     isTodo: false,
     isDone: false,
+    subtasks: [],
+    timestamp: '',
+    finishTimestamp: '',
+    logo: ''
   })
   console.log('newTask:', newTask)
 
