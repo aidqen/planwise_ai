@@ -4,6 +4,7 @@ import { AppHeader } from '../components/AppHeader'
 import '@fontsource-variable/montserrat'
 import { Sidebar } from '@/components/Sidebar'
 import { ReduxProvider } from '@/components/ReactProvider'
+import { PlusButton } from './components/PlusButton'
 
 export const metadata = {
   title: 'Daily Planner',
@@ -17,7 +18,8 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <Sidebar />
           <AppHeader />
-          <main className="p-4 pt-10">{children}</main>
+          <PlusButton />
+          <main className="p-4 pt-7">{children}</main>
         </ReduxProvider>
       </body>
     </html>
