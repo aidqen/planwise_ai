@@ -134,8 +134,8 @@ export const userEx = {
       "type": "habit",
       "title": "Drink Water",
       "description": "Drink 8 glasses of water",
-      "timestamp": 1733191200000, // December 3, 2024, 9:00 AM
-      "finishTimestamp": 1733194800000, // One hour after start
+      "timestamp": 1733194800000, 
+      "finishTimestamp": 1733202000000, 
       "recurrence": {
         "type": "daily"
       },
@@ -208,6 +208,22 @@ export const userEx = {
       "importance": "medium",
       "bg": "#ffcccb",
       "logo": "reading_logo.png",
+      "isDone": false,
+      "subtasks": []
+    },
+    {
+      "id": "task7",
+      "type": "habit",
+      "title": "Morning Jog",
+      "description": "Jog around the park",
+      "timestamp": 1733198400000, // December 3, 2024, 10:00 AM (overlapping with task6)
+      "finishTimestamp": 1733205600000, // Ends two hours later (December 3, 2024, 12:00 PM)
+      "recurrence": {
+        "type": "daily"
+      },
+      "importance": "high",
+      "bg": "#c57676",
+      "logo": "jog_logo.png",
       "isDone": false,
       "subtasks": []
     }
