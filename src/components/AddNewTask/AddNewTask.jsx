@@ -1,6 +1,29 @@
+'use client'
+import { toggleTaskModal } from '@/store/actions/system.actions'
+import { X } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { ToggleBtn } from '../ToggleBtn'
+import { TaskRepeat } from './TaskRepeat'
+
 export function AddNewTask({}) {
   const taskModalOpen = useSelector(state => state.systemModule.taskModalOpen)
   const colorInputRef = useRef(null)
+  const [newTask, setNewTask] = useState({
+    title: '',
+    description: '',
+    bg: '#fff',
+    recurrence: { isOn: false, onDays: [0,1,2,3,4,5,6] },
+    isTodo: false,
+    isDone: false,
+  })
+  console.log('newTask:', newTask)
+
+  function handleChange({ target }) {
+    console.log('target:', target.name)
+    setNewTask(task => ({ ...task, [target.name]: target.value }))
+  }
+
   function onToggleTaskModal() {
     toggleTaskModal(false)
   }
@@ -51,6 +74,7 @@ export function AddNewTask({}) {
               ref={colorInputRef}
             />
           </div>
+          <TaskRepeat setNewTask={setNewTask} newTask={newTask} />
         </div>
       </div>
     </dialog>
